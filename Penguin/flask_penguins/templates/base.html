@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stewie Griffin</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><a href="{{ url_for('home') }}", class="logo">Stewie Griffin on Crack</a></li>
+        <li><a href="{{ url_for('about') }}">Om</a></li>
+      </ul>
+    </header>
+    {% block content %}{% endblock %}
+  </body>
+</html>
