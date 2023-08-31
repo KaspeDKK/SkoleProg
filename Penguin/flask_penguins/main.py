@@ -8,6 +8,11 @@ def home():
     print("Website started")
     return render_template('home.html')
 
+@app.route('/identify')
+def identify():
+    print("Website started")
+    return render_template('identify.html')
+
 if __name__ == '__main__':
     app.debug = True
     #app.run(debug=True) #Koer kun paa localhost
