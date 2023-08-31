@@ -1,15 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="flex-container">
-    <div class="flex-item-left">
+<div class="parent">
+    <div class="div1">
+      <h2>Welcome to Penguin Indentify'er</h2>
+      <p>This app is made to help you Indentify different types for penguins</p>
+      <button>Learn More</button>
+    </div>
+    <div class="div2">
+      <h3>The Different Penguins</h3>
+      <ul>
+        <li>Adelie Penguins</li>
+        <li>Gentoo Penguins</li>
+        <li>Chinstrap Peguins</li>
+      </ul>
+    </div>
+    <div class="div3">
+      <h3>Test our model!</h3>
       <form method="post" action="/test_model_penguin/" >
         <button name="test_model_button" type="submit">Test the model</button>
         <p>{{ accuracy_result }}</p>
       </form>
     </div>
-    <div class="flex-item-right">
-      <img src="/static/img/penguins.png" width="500" alt="Madagascar Penguins">
+    <div class="div4">
+
     </div>
-  </div>
+    <div class="div5">
+      <img src="/static/img/penguins.png" width="350" alt="Madagascar Penguins">
+    </div>
+</div>
 {% endblock %}
