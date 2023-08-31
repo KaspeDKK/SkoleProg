@@ -1,3 +1,4 @@
+from flask import *
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,10 +7,11 @@ from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifie
 from sklearn.model_selection import train_test_split # Import train_test_split function
 from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
 import pickle
-import pickle
+
+
+loaded_penguin_model = pickle.load(open('flask_penguins\static\models\penguin_model' , 'rb'))
 
 def test_model():
-    loaded_penguin_model = pickle.load(open('flask_penguins\static\models\penguin_model' , 'rb'))
 
     # Read the CSV file
     penguins = pd.read_csv("flask_penguins/static/data/penguins.csv")
@@ -39,4 +41,10 @@ def test_model():
     # Model Accuracy, how often is the classifier correct?
     accuracy = metrics.accuracy_score(y_test, y_pred)
     return accuracy
+
+def id_penguin():
+    int_features = [int(x) for z in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = loaded_penguin_model.predict(final_features)    
+    return 'name_of_penguin'
 
