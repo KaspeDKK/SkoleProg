@@ -46,5 +46,6 @@ def id_penguin():
     int_features = [int(x) for z in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = loaded_penguin_model.predict(final_features)    
+    
     return 'name_of_penguin'
 
