@@ -9,7 +9,7 @@ from sklearn import metrics #Import scikit-learn metrics module for accuracy cal
 import pickle
 
 
-loaded_penguin_model = pickle.load(open('flask_penguins\static\models\penguin_model' , 'rb'))
+#loaded_penguin_model = pickle.load(open('flask_penguins\static\models\penguin_model' , 'rb'))
 
 def test_model():
     """
