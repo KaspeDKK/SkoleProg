@@ -23,7 +23,14 @@
       </form>
     </div>
     <div class="div4">
-
+      <form method="POST" action="/identify_penguin/" >
+        <input type="Culmen Length (mm)" name="CulmenLength" />
+        <input type="Culmen Depth (mm)" name="CulmenDepth" />
+        <input type="Flipper Length (mm)" name="FlipperLength" />
+        <input type="Body Mass (g)" name="BodyMass" />
+        <button name="id_penguin_button" type="submit">Check penguin</button>
+        <p>{{ penguin_name }}</p>
+      </form>
     </div>
     <div class="div5">
       <img src="/static/img/penguins.png" width="350" alt="Madagascar Penguins">
