@@ -1,39 +1,91 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="parent">
-    <div class="div1">
-      <h2>Welcome to Penguin Indentify'er</h2>
-      <p>This app is made to help you Indentify different types of penguins</p>
-      <button>Learn More</button>
+<script src="https://kit.fontawesome.com/64d5226875.js" crossorigin="anonymous"></script>
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">Panel Heading</div>
+  <div class="panel-body">Panel Content</div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel-heading">
+        <div class="text-center">
+          <h2>Welcome to hot gas ball Identifier</h2>
+          <p>This app is made to help you Identify different types of Stars</p>
+          <button>Learn More</button>
+        </div>
+      </div>
     </div>
-    <div class="div2">
-      <h3>The Different Penguins</h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <h3>The Different Star types</h3>
       <ul>
-        <li>Adelie Penguins</li>
-        <li>Gentoo Penguins</li>
-        <li>Chinstrap Peguins</li>
+        <li>Red Dwarf-0</li>
+        <li>Brown Dwarf-1</li>
+        <li>White Dwarf-2</li>
+        <li>Main Sequence - 3</li>
+        <li>Super Giants - 4</li>
+        <li>Hyper Giants - 5</li>
       </ul>
     </div>
-    <div class="div3">
+    <div class="col-lg-4">
       <h3>Test our model!</h3>
       <form method="post" action="/test_model_penguin/" >
-        <button name="test_model_button" type="submit">Test the model</button>
+        <button name="test_model_button" type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search"></span> Search
+        </button>
         <p>{{ accuracy_result }}</p>
       </form>
     </div>
-    <div class="div4">
-      <form method="POST" action="/identify_penguin/" >
-        <input type="Culmen Length (mm)" name="CulmenLength" />
-        <input type="Culmen Depth (mm)" name="CulmenDepth" />
-        <input type="Flipper Length (mm)" name="FlipperLength" />
-        <input type="Body Mass (g)" name="BodyMass" />
-        <button name="id_penguin_button" type="submit">Check penguin</button>
-        <p>{{ penguin_name }}</p>
-      </form>
-    </div>
+    <div class="col-lg-4">
+    <form method="POST" action="/identify_penguin/" >
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <div class="form-group">
+          <input id="Temperature(K)" type="Temperature(K)" class="form-control" name="Temperature" placeholder="Temperature">
+        </div>
+      
+        <div class="form-group">
+          <input id="RelativeLuminosity" type="RelativeLuminosity" class="form-control" name="RLuminosity" placeholder="RLuminosity">
+        </div>
+      
+        <div class="form-group">
+          <input id="Relative Radius" type="Relative Radius" class="form-control" name="RRadius" placeholder="RRadius">
+        </div>
+      
+        <div class="form-group">
+          <input id="AbsoluteMagnitude" type="AbsoluteMagnitude" class="form-control" name="AM" placeholder="AM">
+        </div>
+      
+        <div class="form-group">
+          <input id="spectral classification" type="spectral classification" class="form-control" name="Sclass" placeholder="Sclass">
+        </div>
+      </div>
+      
+      <select name="Color" id="Color">
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+        <option value="blue">Blue</option>
+        <option value="white">White</option>
+        <option value="blue white">Blue White</option>
+        <option value="saab">Blue-White</option>
+        <option value="mercedes">Yellow White</option>
+        <option value="mercedes">White Yellow</option>
+        <option value="mercedes">Yellow-White</option>
+        <option value="audi">Yellowish White</option>
+        <option value="mercedes">Pale Yellow Orange</option>
+        <option value="audi">Yellowish</option>
+        <option value="saab">Orange-Red</option>
+      </select>
+      <button name="id_penguin_button" type="submit">Check star</button>
+      <p>{{ penguin_name }}</p>
+   </div>
+  </div>
     <div class="div5">
       <img src="/static/img/penguins.png" width="350" alt="Madagascar Penguins">
     </div>
+  </div>
 </div>
 {% endblock %}

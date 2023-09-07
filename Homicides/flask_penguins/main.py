@@ -25,5 +25,5 @@ def identify_penguin():
 
 if __name__ == '__main__':
     app.debug = True
-    #app.run(debug=True) #Koer kun paa localhost
+    #app.run(debug=True) #Kører kun på localhost
     app.run(host='0.0.0.0', port=5000)
