@@ -32,16 +32,20 @@
     </div>
     <div class="col-lg-4">
       <h3>Test our model!</h3>
-      <form method="post" action="/test_model_penguin/" >
+
+      <form method="post" action="/test_model_star/" >
         <button name="test_model_button" type="submit" class="btn btn-info">
         <i class="bi bi-graph-up"></i> Search
         </button>
         <p>{{ accuracy_result }}</p>
       </form>
+
     </div>
     
     <div class="col-lg-4">
-    <form method="POST" action="/identify_penguin/" >
+
+
+    <form method="POST" action="/id/" >
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <div class="form-group">
@@ -63,7 +67,7 @@
       
         <div class="form-group">
           <select name="Sclass" id="spectral classification">
-            <option value="...">spectral classification</option>
+            <option value="">spectral classification</option>
             <option value="O">O</option>
             <option value="B">B</option>
             <option value="A">A</option>
@@ -74,25 +78,24 @@
           </select>
       
       <select name="Color" id="Color">
-        <option value="....">Color of star</option>
+        <option value="">Color of star</option>
         <option value="red">Red</option>
-        <option value="orange">Orange</option>
-        <option value="blue">Blue</option>
+        <option value="blue-white">Blue-White</option>
         <option value="white">White</option>
-        <option value="blue white">Blue White</option>
-        <option value="Blue-White">Blue-White</option>
-        <option value="Yellow White">Yellow White</option>
-        <option value="White Yellow">White Yellow</option>
-        <option value="Yellow-White">Yellow-White</option>
-        <option value="Yellowish White">Yellowish White</option>
-        <option value="Pale Yellow Orange">Pale Yellow Orange</option>
-        <option value="Yellowish">Yellowish</option>
-        <option value="Orange-Red">Orange-Red</option>
+        <option value="blue">Blue</option>
+        <option value="yellowish">Yellowish</option>
+        <option value="pale yellow orange">Pale-Yellow-Orange</option>
+        <option value="whitish">Whitish</option>
+        <option value="white-yellow">White-yellow</option>
+        <option value="orange">Orange</option>
+        <option value="orange-red">Orange-red</option>
       </select>
-      <button name="id_penguin_button" type="submit" class="btn btn-info">Check star</button>
-      <p>{{ penguin_name }}</p>
-    </div>
-   </div>
+      <button name="id_star_button" type="submit" class="btn btn-info">Check star</button>
+    </form>
+    {% if prediction != None %}
+    <p>Prediction: {{ prediction }}</p>
+    {% endif %}
+
   </div>
 </div>
     <div class="div5">

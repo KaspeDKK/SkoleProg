@@ -1,5 +1,10 @@
 from flask import *
-from app.penguin_model import *
+from app.star_model import *
+
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
+from sklearn.model_selection import train_test_split # Import train_test_split function
+from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
 
 # Initialize application & Session
 app = Flask(__name__)
@@ -16,7 +21,16 @@ def test_model_penguin():
 
 @app.route('/identify/')
 def identify():
-    return render_template('identify.html')
+    if request.method == "POST":
+        print(request.form)
+
+        arr = []
+        for i in request.form.items():
+            arr.append(i[1])
+
+        print(arr)
+        prediction = star_model.predict(np.array(arr).reshape(1, -1))[0]
+    return render_template('identify.html', pred=prediction)
 
 @app.route('/identify_penguin/', methods=['POST'])
 def identify_penguin():
