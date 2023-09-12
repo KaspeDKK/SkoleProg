@@ -1,41 +1,40 @@
 from flask import *
-from app.star_model import *
-import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import tree
-from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
-from sklearn.model_selection import train_test_split # Import train_test_split function
-from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
 import pickle
 
-# Initialize application & Session
+# Initialize Flask application
 app = Flask(__name__)
+# Set secret key for Flask session
 app.config['SECRET_KEY'] = 'HTX123'  
 
+# Load the pre-trained model for future predictions
 model = pickle.load(open('StarID/flask_penguins/static/models/star_model' , 'rb'))
 
+# Define the default route that serves the homepage
 @app.route('/', methods=["GET", "POST"])
 def home():
     return render_template('home.html')
 
+# Define the route to handle star identification
 @app.route('/id/', methods=["GET", "POST"])
 def id():
     if request.method == "POST":
         print(request.form)
 
-        arr = []
+        arr = []  # Initialize an empty list to store processed form values
         for key, value in request.form.items():
             if key == "Color":
-                # Encode the colors
-                value = value.lower()  # Convert to lowercase to ensure consistency
+                value = value.lower()  # Convert to lowercase for consistency
+                
+                # Map certain color names to standardized names
                 color_map = {
                     'blue white': 'blue-white',
                     'yellow-white': 'white-yellow',
                     'yellowish white': 'yellowish'
                 }
-                value = color_map.get(value, value)  # Replace if key exists, else use original value
+                value = color_map.get(value, value)  # Get the standardized name, if it exists
 
+                # Convert color names to numerical values for the model
                 color_encoding = {
                     'red': 0, 
                     'blue-white': 1, 
@@ -50,6 +49,8 @@ def id():
                 }
                 value = color_encoding[value]
             elif key == "Sclass":
+                
+                # Handle spectral class input and encode it
                 spectral_class_encoding = {
                     'O': 0,
                     'B': 1,
@@ -61,23 +62,30 @@ def id():
                 }
                 value = spectral_class_encoding[value]
             elif key == "id_star_button":
-                continue  # Skip this value, since its the button
+                continue  # If the input is the button, skip it
             else:
-                # Convert numerical strings to float
+                # For other inputs, convert them to float values
                 value = float(value)
 
-            arr.append(value)
+            arr.append(value)  # Add the processed value to the list
 
-        print(arr)
-        prediction = model.predict(np.array(arr).reshape(1, -1))[0]
-    return jsonify({"prediction": int(prediction)})
+        # Use the model to predict the star type based on the input values
+        prediction = model.predict(np.array(arr).reshape(1, -1))
 
+        name_map = {
+                    0: 'Red Dwarf',
+                    1: 'Brown Dwarf',
+                    2: 'White Dwarf',
+                    3: 'Main Sequence',
+                    4: 'Super Giant',
+                    5: 'Hyper Giant'
+        }
+        print(prediction)
+        prediction = name_map[prediction[0]]
 
-@app.route('/test_model_penguin/', methods=['POST'])
-def test_model_penguin():
-    return render_template('home.html')
+    return jsonify({"prediction": str(prediction)})
 
+# Start the Flask application
 if __name__ == '__main__':
-    app.debug = True
-    #app.run(debug=True) #Kører kun på localhost
+    #app.debug = True
     app.run(host='0.0.0.0', port=5000)
