@@ -13,7 +13,7 @@ import pickle
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'HTX123'  
 
-model = pickle.load(open('StarID\star_model' , 'rb'))
+model = pickle.load(open('StarID/flask_penguins/static/models/star_model' , 'rb'))
 
 @app.route('/', methods=["GET", "POST"])
 def home():
@@ -70,7 +70,7 @@ def id():
 
         print(arr)
         prediction = model.predict(np.array(arr).reshape(1, -1))[0]
-    return render_template('home.html', prediction=prediction)
+    return jsonify({"prediction": int(prediction)})
 
 
 @app.route('/test_model_penguin/', methods=['POST'])

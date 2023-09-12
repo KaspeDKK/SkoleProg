@@ -2,6 +2,7 @@
 
 {% block content %}
 <script src="https://kit.fontawesome.com/64d5226875.js" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 <!-- <div class="panel panel-default">
   <div class="panel-heading">Panel Heading</div>
   <div class="panel-body">Panel Content</div>
@@ -45,7 +46,7 @@
     <div class="col-lg-4">
 
 
-    <form method="POST" action="/id/" >
+    <form method="POST" id="prediction-form">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <div class="form-group">
@@ -92,9 +93,7 @@
       </select>
       <button name="id_star_button" type="submit" class="btn btn-info">Check star</button>
     </form>
-    {% if prediction != None %}
-    <p>Prediction: {{ prediction }}</p>
-    {% endif %}
+    <div id="prediction-output"></div>
 
   </div>
 </div>
