@@ -1,5 +1,5 @@
 from flask import *
-from app.penguin_model import *
+
 
 # Initialize application & Session
 app = Flask(__name__)
