@@ -1,0 +1,10 @@
+Usage:
+gcc -o Csar Csar.c colors.c
+.\Csar.exe <encrypt/decrypt> <"text"> <key>
+
+Example:
+.\Csar.exe encrypt "Hello World! 50% of 200 is: 100" 5
+Encrypted text: Mjqqt%\twqi&%:5*%tk%755%nx?%655
+
+.\Csar.exe decrypt "Mjqqt%\twqi&%:5*%tk%755%nx?%655" 5
+Decrypted text: Hello World! 50% of 200 is: 100
